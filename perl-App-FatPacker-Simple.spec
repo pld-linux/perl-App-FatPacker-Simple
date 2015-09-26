@@ -8,14 +8,14 @@
 Summary:	App::FatPacker::Simple - only fatpack a script
 Name:		perl-App-FatPacker-Simple
 Version:	0.04
-Release:	1
+Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/App/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	2a2a7ff6c1442009f0a693c030db821a
 URL:		http://search.cpan.org/dist/App-FatPacker-Simple/
-BuildRequires:	perl-Module-Build
+BuildRequires:	perl-Module-Build >= 0.4210
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
