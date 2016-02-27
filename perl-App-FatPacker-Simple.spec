@@ -7,23 +7,23 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	App::FatPacker::Simple - only fatpack a script
 Name:		perl-App-FatPacker-Simple
-Version:	0.04
-Release:	2
+Version:	0.06
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/App/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	2a2a7ff6c1442009f0a693c030db821a
+# Source0-md5:	1836aa1660ca1282400cd0553928c905
 URL:		http://search.cpan.org/dist/App-FatPacker-Simple/
 BuildRequires:	perl-Module-Build >= 0.4210
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
-BuildRequires:	perl(Capture::Tiny)
-BuildRequires:	perl(Distribution::Metadata)
-BuildRequires:	perl(Perl::Strip)
 BuildRequires:	perl-App-FatPacker
+BuildRequires:	perl-Capture-Tiny
+BuildRequires:	perl-Distribution-Metadata
 BuildRequires:	perl-File-pushd
+BuildRequires:	perl-Perl-Strip
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -38,17 +38,15 @@ For tutorial, please look at App::FatPacker::Simple::Tutorial.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-%{__perl} Build.PL \
-	destdir=$RPM_BUILD_ROOT \
-	installdirs=vendor
-./Build
-
-%{?with_tests:./Build test}
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor
+%{__make}
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-./Build install
+%{__make} pure_install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a eg/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -58,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.md Changes
+%doc README Changes
 %attr(755,root,root) %{_bindir}/fatpack-simple
 %{perl_vendorlib}/App/FatPacker/*.pm
 %{perl_vendorlib}/App/FatPacker/Simple
