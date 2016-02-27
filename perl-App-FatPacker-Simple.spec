@@ -7,13 +7,13 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	App::FatPacker::Simple - only fatpack a script
 Name:		perl-App-FatPacker-Simple
-Version:	0.06
+Version:	0.07
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/App/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	1836aa1660ca1282400cd0553928c905
+# Source0-md5:	b92ea47141efaf42a236ea7e32d949cf
 URL:		http://search.cpan.org/dist/App-FatPacker-Simple/
 BuildRequires:	perl-Module-Build >= 0.4210
 BuildRequires:	perl-devel >= 1:5.8.0
