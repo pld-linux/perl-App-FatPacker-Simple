@@ -4,7 +4,6 @@
 
 %define		pdir	App
 %define		pnam	FatPacker-Simple
-%include	/usr/lib/rpm/macros.perl
 Summary:	App::FatPacker::Simple - only fatpack a script
 Name:		perl-App-FatPacker-Simple
 Version:	0.07
